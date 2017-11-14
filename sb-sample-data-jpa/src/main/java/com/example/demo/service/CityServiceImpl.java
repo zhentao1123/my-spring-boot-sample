@@ -21,8 +21,7 @@ class CityServiceImpl implements CityService {
 
 	private final HotelRepository hotelRepository;
 
-	public CityServiceImpl(CityRepository cityRepository,
-			HotelRepository hotelRepository) {
+	public CityServiceImpl(CityRepository cityRepository, HotelRepository hotelRepository) {
 		this.cityRepository = cityRepository;
 		this.hotelRepository = hotelRepository;
 	}
