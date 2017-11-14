@@ -4,24 +4,21 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.example.demo.domain.City;
-import com.example.demo.domain.HotelSummary;
-import com.example.demo.domain.Rating;
-import com.example.demo.domain.RatingCount;
-import com.example.demo.domain.Hotel;
-import com.example.demo.domain.Review;
-import com.example.demo.domain.ReviewDetails;
-import com.example.demo.service.dao.CityRepository;
-import com.example.demo.service.dao.CitySearchCriteria;
-import com.example.demo.service.dao.ReviewsSummary;
-import com.example.demo.service.dao.HotelRepository;
-import com.example.demo.service.dao.ReviewRepository;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
+
+import com.example.demo.domain.City;
+import com.example.demo.domain.Hotel;
+import com.example.demo.domain.Rating;
+import com.example.demo.domain.RatingCount;
+import com.example.demo.domain.Review;
+import com.example.demo.domain.ReviewDetails;
+import com.example.demo.service.dao.HotelRepository;
+import com.example.demo.service.dao.ReviewRepository;
+import com.example.demo.service.dao.ReviewsSummary;
 
 @Component("hotelService")
 @Transactional
@@ -31,8 +28,7 @@ class HotelServiceImpl implements HotelService {
 
 	private final ReviewRepository reviewRepository;
 
-	public HotelServiceImpl(HotelRepository hotelRepository,
-			ReviewRepository reviewRepository) {
+	public HotelServiceImpl(HotelRepository hotelRepository, ReviewRepository reviewRepository) {
 		this.hotelRepository = hotelRepository;
 		this.reviewRepository = reviewRepository;
 	}
