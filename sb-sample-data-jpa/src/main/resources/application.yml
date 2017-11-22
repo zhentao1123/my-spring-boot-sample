@@ -1,8 +1,15 @@
 spring:
-  h2:
-    console:
-      enabled: true
+  datasource:
+    url: jdbc:mysql://localhost:3306/db1
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    #properties.hibernate.hbm2ddl.auto: create-drop
+    show-sql: true
 
 logging:
   level:
-    org.hibernate.SQL: debug
+    org: error #暂时关闭日志干扰
+    com: error #暂时关闭日志干扰
+    org.hibernate.SQL: debug #打印语句查看
