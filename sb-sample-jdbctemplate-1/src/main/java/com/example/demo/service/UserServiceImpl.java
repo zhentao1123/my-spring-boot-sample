@@ -1,5 +1,7 @@
 package com.example.demo.service;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -13,24 +15,24 @@ public class UserServiceImpl implements UserService {
 	@Override
 	@Transactional(readOnly=false)
 	public void create(String name, Integer age) {
-	    jdbcTemplate.update("insert into USER(NAME, AGE) values(?, ?)", name, age);
+	    jdbcTemplate.update("insert into user(name, age, create_time) values(?, ?, ?)", name, age, new Date());
 	}
 	
 	@Override
 	@Transactional(readOnly=false)
 	public void deleteByName(String name) {
-	    jdbcTemplate.update("delete from USER where NAME = ?", name);
+	    jdbcTemplate.update("delete from user where name = ?", name);
 	}
 	
 	@Override
 	@Transactional(readOnly=true)
 	public Integer getAllUsers() {
-	    return jdbcTemplate.queryForObject("select count(1) from USER", Integer.class);
+	    return jdbcTemplate.queryForObject("select count(1) from user", Integer.class);
 	}
 	
 	@Override
 	@Transactional(readOnly=false)
 	public void deleteAllUsers() {
-	    jdbcTemplate.update("delete from USER");
+	    jdbcTemplate.update("delete from user");
 	}
 }

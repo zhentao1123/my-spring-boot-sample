@@ -1,0 +1,7 @@
+CREATE TABLE `db1`.`user` (
+	`id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`name` varchar(20) NOT NULL,
+	`age` smallint(3) NOT NULL,
+	`create_time` datetime NOT NULL,
+	PRIMARY KEY (`id`)
+) ENGINE=`InnoDB` AUTO_INCREMENT=1 DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ROW_FORMAT=DYNAMIC COMMENT='' CHECKSUM=0 DELAY_KEY_WRITE=0;
