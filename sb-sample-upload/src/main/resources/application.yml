@@ -1,0 +1,8 @@
+spring:
+  http:
+    multipart:
+      enabled: true
+      file-size-threshold: 0
+      location: /upload/save
+      max-file-size: 5Mb
+      max-request-size: 10Mb
