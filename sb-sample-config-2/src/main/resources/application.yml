@@ -1,0 +1,30 @@
+#spring
+spring:
+  profiles:
+    active: dev
+
+env: default
+
+
+
+---
+spring:
+  profiles: dev
+
+env: dev
+  
+  
+
+---
+spring:
+  profiles: prod
+
+env: prod
+  
+  
+
+---
+spring:
+  profiles: test
+
+env: test
