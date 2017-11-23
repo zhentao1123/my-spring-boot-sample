@@ -1,0 +1,1 @@
+CREATE TABLE city (id INT, country VARCHAR(50), name VARCHAR(50), state VARCHAR(50), map VARCHAR(100));
