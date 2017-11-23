@@ -27,21 +27,8 @@ public class ApplicationTests {
 	@Rollback(false)
 	public void test1() {
         try {
-			MockMultipartHttpServletRequest request = new MockMultipartHttpServletRequest();
-			request.setMethod("POST");
-			request.setContentType("multipart/form-data");
-			request.addHeader("Content-type", "multipart/form-data");
-			
-			MockMultipartFile mfile1 = new MockMultipartFile("file", "1.jpg", "application/png", 
+			MockMultipartFile mfile1 = new MockMultipartFile("file", "1.jpg", "image/png", 
 					new FileInputStream("/upload/source/1.jpg"));
-			MockMultipartFile mfile2 = new MockMultipartFile("file", "2.jpg", "application/png", 
-					new FileInputStream("/upload/source/2.jpg"));
-			MockMultipartFile mfile3 = new MockMultipartFile("file", "3.jpg", "application/png", 
-					new FileInputStream("/upload/source/3.jpg"));
-			
-			request.addFile(mfile1);
-			request.addFile(mfile2);
-			request.addFile(mfile3);
 			
 			controller.upload1(mfile1);
 		} catch (Exception e) {
@@ -59,11 +46,11 @@ public class ApplicationTests {
 			request.setContentType("multipart/form-data");
 			request.addHeader("Content-type", "multipart/form-data");
 			
-			MockMultipartFile mfile1 = new MockMultipartFile("file", "1.jpg", "application/png", 
+			MockMultipartFile mfile1 = new MockMultipartFile("file", "1.jpg", "image/png", 
 					new FileInputStream("/upload/source/1.jpg"));
-			MockMultipartFile mfile2 = new MockMultipartFile("file", "2.jpg", "application/png", 
+			MockMultipartFile mfile2 = new MockMultipartFile("file", "2.jpg", "image/png", 
 					new FileInputStream("/upload/source/2.jpg"));
-			MockMultipartFile mfile3 = new MockMultipartFile("file", "3.jpg", "application/png", 
+			MockMultipartFile mfile3 = new MockMultipartFile("file", "3.jpg", "image/png", 
 					new FileInputStream("/upload/source/3.jpg"));
 			
 			request.addFile(mfile1);
