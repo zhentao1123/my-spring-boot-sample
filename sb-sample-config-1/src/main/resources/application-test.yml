@@ -1,4 +1,4 @@
 spring:
   profiles: test
   
-test: test
+env: test
