@@ -35,8 +35,8 @@ public class ApplicationTests {
 		userRepository.save(new User("ddd", 40, new Date()));
 		userRepository.save(new User("eee", 50, new Date()));
 
-		Assert.assertEquals(5, 5);
-		//Assert.assertEquals(5, userRepository.findAll().size());
+		//Assert.assertEquals(5, 5);
+		Assert.assertEquals(5, userRepository.findAll().size());
 	}
 
 }

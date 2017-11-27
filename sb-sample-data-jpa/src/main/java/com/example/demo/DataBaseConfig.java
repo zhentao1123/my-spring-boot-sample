@@ -19,8 +19,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-//@ComponentScan(basePackages={"com.example.demo"})
-//@EntityScan(basePackages={"com.example.demo.domain"}) 
+@ComponentScan(basePackages={"com.example.demo"})
+@EntityScan(basePackages={"com.example.demo.domain"}) 
 @EnableJpaRepositories(
 		entityManagerFactoryRef="entityManagerFactory",
 		transactionManagerRef="transactionManager", 

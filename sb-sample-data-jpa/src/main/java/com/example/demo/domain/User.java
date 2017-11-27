@@ -3,56 +3,58 @@ package com.example.demo.domain;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+/**
+ * The persistent class for the user database table.
+ * 
+ */
 @Entity
-//@NamedQuery(name="User.findAll", query="SELECT u FROM User u")
+@Table(name="user")
+@NamedQuery(name="User.findAll", query="SELECT u FROM User u")
 public class User implements Serializable {
-
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer id;
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	//@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(unique=true, nullable=false)
+	private Long id;
 
-	private String name;
-	
+	@Column(nullable=false)
 	private Integer age;
 
-	@Temporal(TemporalType.TIME)
-	private Date create_time;
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="create_time", nullable=false)
+	private Date createTime;
+
+	@Column(nullable=false, length=20)
+	private String name;
 
 	public User() {
-		super();
 	}
-
-	public User(String name, Integer age, Date create_time) {
+	
+	public User(String name, Integer age, Date createTime) {
 		super();
-		this.name = name;
 		this.age = age;
-		this.create_time = create_time;
+		this.createTime = createTime;
+		this.name = name;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public Integer getAge() {
@@ -63,12 +65,20 @@ public class User implements Serializable {
 		this.age = age;
 	}
 
-	public Date getCreate_time() {
-		return create_time;
+	public Date getCreateTime() {
+		return this.createTime;
 	}
 
-	public void setCreate_time(Date create_time) {
-		this.create_time = create_time;
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
 	}
 
+	public String getName() {
+		return this.name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
 }
