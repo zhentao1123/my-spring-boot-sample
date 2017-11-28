@@ -4,6 +4,7 @@ import javax.annotation.Resource;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -19,12 +20,13 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@ComponentScan(basePackages={"com.example.demo"})
-@EntityScan(basePackages={"com.example.demo.domain"}) 
+@ComponentScan(basePackages={"com.example.demo.*"})
+@EntityScan(basePackages={"com.example.demo.domain.*"}) 
+@EnableAutoConfiguration
 @EnableJpaRepositories(
 		entityManagerFactoryRef="entityManagerFactory",
 		transactionManagerRef="transactionManager", 
-		basePackages={"com.example.demo.domain"})//指定仓库扫描包目录
+		basePackages={"com.example.demo.dao.*"})//指定仓库扫描包目录
 public class DataBaseConfig {
 	
 	@Resource(name="dataSource")
