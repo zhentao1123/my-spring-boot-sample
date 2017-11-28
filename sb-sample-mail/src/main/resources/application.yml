@@ -1,0 +1,13 @@
+#spring
+spring:
+  mail:
+    host: smtp.126.com
+    username: zzt1981@126.com
+    password: Zxcv3.1415926
+    properties: 
+      mail:
+        smtp:
+          auth: true
+          starttls: 
+            enable: true
+            required: true
