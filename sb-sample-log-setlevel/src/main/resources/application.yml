@@ -1,0 +1,7 @@
+management:
+  security:
+    enabled: false
+    
+logging:
+  level:
+    org: error #暂时关闭日志干扰
