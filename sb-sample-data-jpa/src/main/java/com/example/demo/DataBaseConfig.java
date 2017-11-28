@@ -20,9 +20,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@ComponentScan(basePackages={"com.example.demo.*"})
 @EntityScan(basePackages={"com.example.demo.domain.*"}) 
-@EnableAutoConfiguration
 @EnableJpaRepositories(
 		entityManagerFactoryRef="entityManagerFactory",
 		transactionManagerRef="transactionManager", 
@@ -50,7 +48,7 @@ public class DataBaseConfig {
 	{
 		LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
 		factory.setDataSource(dataSource);
-		factory.setPackagesToScan("com.example.demo.repository");
+		factory.setPackagesToScan("com.example.demo.dao");
 		HibernateJpaVendorAdapter jpaVendorAdapter = new HibernateJpaVendorAdapter();
 		jpaVendorAdapter.setDatabase(Database.MYSQL);
 		jpaVendorAdapter.setDatabasePlatform("org.hibernate.dialect.MySQL5Dialect");
