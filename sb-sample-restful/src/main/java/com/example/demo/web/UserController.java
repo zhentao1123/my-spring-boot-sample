@@ -21,23 +21,43 @@ public class UserController {
 	//static ConcurrentMap<Integer, User> users = new ConcurrentHashMap<Integer, User>();
 	static Map<Long, User> users = Collections.synchronizedMap(new HashMap<Long, User>());
 	
+	/**
+	 * get user list
+	 * @return
+	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public List<User> getUserList() {
 		List<User> r = new ArrayList<User>(users.values());
         return r;
 	}
 
+	/**
+	 * create user
+	 * @param user
+	 * @return
+	 */
 	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public String postUser(@ModelAttribute User user) {
 		users.put(user.getId(), user);
 		return "success";
 	}
 
+	/**
+	 * get on user
+	 * @param id
+	 * @return
+	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public User getUser(@PathVariable Long id) {
 		return users.get(id);
 	}
 
+	/**
+	 * modify user
+	 * @param id
+	 * @param user
+	 * @return
+	 */
 	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
 	public String putUser(@PathVariable Long id, @ModelAttribute User user) {
 		User u = users.get(id);
@@ -47,6 +67,11 @@ public class UserController {
 		return "success";
 	}
 
+	/**
+	 * delete user
+	 * @param id
+	 * @return
+	 */
 	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
 	public String deleteUser(@PathVariable Long id) {
 		users.remove(id);
@@ -54,6 +79,7 @@ public class UserController {
 	}
 	
 	/**
+	 * delete all users
      * just 4 test
      * @return
      */
