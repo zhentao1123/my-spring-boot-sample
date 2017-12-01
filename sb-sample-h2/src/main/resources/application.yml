@@ -1,7 +1,7 @@
 #spring
 spring:
   datasource:
-    url: jdbc:h2:mem:test;AUTO_RECONNECT=TRUE;DB_CLOSE_ON_EXIT=TRUE
+    url: jdbc:h2:mem:test;AUTO_RECONNECT=TRUE;DB_CLOSE_ON_EXIT=FALSE
     driver-class-name: org.h2.Driver
     username: root
     password: 123456
@@ -12,7 +12,11 @@ spring:
         enabled: true
         path: /h2-console
         settings.web-allow-others: true ＃开启支持远程访问
-  jpa.properties.hibernate.hbm2ddl.auto: create-drop
+  jpa:
+    properties:
+      hibernate:
+        hbm2ddl.auto: create-drop
+        show_sql: true #显示转换的sql
 
 #logger
 logging:
