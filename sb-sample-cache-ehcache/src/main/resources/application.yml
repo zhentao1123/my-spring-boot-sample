@@ -10,7 +10,8 @@ spring:
       hibernate:
         hbm2ddl.auto: create-drop
         show_sql: true #显示转换的sql
-
+  cache.jcache.config: classpath:ehcache.xml
+  
 #logger
 logging:
   level:
