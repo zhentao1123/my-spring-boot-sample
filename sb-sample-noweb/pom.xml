@@ -45,6 +45,10 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<finalName>${project.name}</finalName>
+					<!-- 默认配置，MANIFEST.MF中同样会指定Start-Class: com.example.demo.Application -->
+					<!-- 
+					<mainClass>com.example.demo.Application</mainClass>
+					 -->
 				</configuration>
 				<executions>
 					<execution>
