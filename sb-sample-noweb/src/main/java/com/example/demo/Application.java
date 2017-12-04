@@ -15,6 +15,11 @@ public class Application implements CommandLineRunner{
 		SpringApplication.run(Application.class, args);
 	}
 
+	/**
+	 * Test Run:
+	 * java -jar sb-sample-noweb.jar 
+	 * java -jar sb-sample-noweb.jar Tom
+	 */
 	@Override
 	public void run(String... args) throws Exception {
 		System.out.println("-------------------------");
