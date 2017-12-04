@@ -10,8 +10,11 @@ spring:
       hibernate:
         hbm2ddl.auto: create-drop
         show_sql: true #显示转换的sql
-  cache.jcache.config: classpath:ehcache.xml
-  
+  cache:
+    jcache.config: classpath:ehcache.xml
+    type: EHCACHE #所有可设置的枚举类型 org.springframework.boot.autoconfigure.cache.CacheType;该处不指定则按枚举定义顺序匹配第一个存在的包资源实现
+    ehcache:
+      config: classpath:ehcache.xml #可以指定目录，如默认在类根目录下放置ehcache.xml文件也可以无需指定
 #logger
 logging:
   level:

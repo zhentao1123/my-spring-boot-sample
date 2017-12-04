@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.junit.Before;
@@ -15,7 +16,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.example.demo.domain.City;
 import com.example.demo.domain.CityRepository;
-import com.example.demo.service.UserService;
+import com.example.demo.service.CityService;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -27,7 +28,7 @@ public class ApplicationTests {
 	CityRepository cityRepository;
 	
 	@Autowired
-	UserService userService;
+	CityService cityService;
 	
 	@Autowired
 	private CacheManager cacheManager;
@@ -39,20 +40,25 @@ public class ApplicationTests {
 	
 	@Test
 	public void test1() {
-		Cache cache1 = cacheManager.getCache("city");
-		log.debug("Cache impl is {}", cache1.getNativeCache().getClass().getName());
+		Collection<String> cacheNames = cacheManager.getCacheNames();
+		for(String cacheName : cacheNames) {
+			log.debug("Cache impl is {}", cacheManager.getCache(cacheName).getNativeCache().getClass().getName());
+			log.debug("Cache Name {}", cacheName);
+		}
 		
-		userService.save(new City("shanghai","china"));
-		userService.save(new City("beijin","china"));
-		List<City> allList = cityRepository.findAll(); //第一次日志有org.hibernate.SQL输出
-		;//可以断点观察cache中缓存情况
-		allList = userService.findAll(); //第二次走缓存，日志没有org.hibernate.SQL输出
-		allList = userService.findAll();//第三次走缓存，日志没有org.hibernate.SQL输出
+		cityService.save(new City("shanghai","china"));
+		cityService.save(new City("beijin","china"));
 		
-		List<City> findList = userService.findByName("shanghai");
-		Cache cache3 = cacheManager.getCache("findByName");//可以断点观察cache中缓存情况
-		findList = userService.findByName("shanghai");
-		findList = userService.findByName("shanghai");
+		List<City> allList = cityService.findAll(); //第一次日志有org.hibernate.SQL输出
+		Cache cache2 = cacheManager.getCache("cityFindAll");//可以断点观察cache中缓存情况
+		allList = cityService.findAll(); //第二次走缓存，日志没有org.hibernate.SQL输出
+		cityService.save(new City("nanjin","china"));
+		allList = cityService.findAll();//第三次走缓存，日志没有org.hibernate.SQL输出
+		
+		List<City> findList = cityService.findByName("shanghai");
+		Cache cache3 = cacheManager.getCache("cityFindByName");//可以断点观察cache中缓存情况
+		findList = cityService.findByName("shanghai");
+		findList = cityService.findByName("shanghai");
 	}
 
 }
