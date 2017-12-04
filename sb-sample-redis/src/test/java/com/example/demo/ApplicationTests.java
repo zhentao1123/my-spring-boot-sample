@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import javax.annotation.Resource;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,7 +20,8 @@ public class ApplicationTests {
 	@Autowired
 	private StringRedisTemplate stringRedisTemplate;
 
-	@Autowired
+	//需要通过name获取唯一指定的的RedisTemplate
+	@Resource(name = "redisTemplate4User")
 	private RedisTemplate<String, User> redisTemplate;
 	
 	@Test

@@ -21,7 +21,14 @@ public class Application {
         return new JedisConnectionFactory();
     }
 
-    @Bean
+	/**
+	 * 要用RedisTemplate<K, V>模式
+	 * 1.必须设置KeySerializer和实现ValueSerializer
+	 * 2.需要指定name,且在调用注入处指定bean名称
+	 * @param factory
+	 * @return
+	 */
+    @Bean(name = "redisTemplate4User")
     public RedisTemplate<String, User> redisTemplate4User(RedisConnectionFactory factory) {
         RedisTemplate<String, User> template = new RedisTemplate<String, User>();
         template.setConnectionFactory(jedisConnectionFactory());
