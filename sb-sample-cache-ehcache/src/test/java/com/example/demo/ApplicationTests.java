@@ -52,13 +52,19 @@ public class ApplicationTests {
 		List<City> allList = cityService.findAll(); //第一次日志有org.hibernate.SQL输出
 		Cache cache2 = cacheManager.getCache("cityFindAll");//可以断点观察cache中缓存情况
 		allList = cityService.findAll(); //第二次走缓存，日志没有org.hibernate.SQL输出
-		cityService.save(new City("nanjin","china"));
 		allList = cityService.findAll();//第三次走缓存，日志没有org.hibernate.SQL输出
 		
 		List<City> findList = cityService.findByName("shanghai");
 		Cache cache3 = cacheManager.getCache("cityFindByName");//可以断点观察cache中缓存情况
 		findList = cityService.findByName("shanghai");
 		findList = cityService.findByName("shanghai");
+		
+		City city = cityService.getCity(1l);
+		city = cityService.getCity(1l);
+		log.debug(city.getName());
+		cityService.updateCityName(1l, "nanjin");
+		city = cityService.getCity(1l);
+		log.debug(city.getName());
 	}
 
 }
