@@ -18,4 +18,5 @@ public interface CityRepository extends PagingAndSortingRepository<City, Long> {
 	List<City> findAll();
 	
 	List<City> findByName(String name);
+	
 }

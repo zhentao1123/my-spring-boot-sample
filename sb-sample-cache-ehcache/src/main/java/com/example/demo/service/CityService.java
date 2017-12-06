@@ -7,6 +7,7 @@ import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.domain.City;
 import com.example.demo.domain.CityRepository;
@@ -31,9 +32,19 @@ public class CityService {
 		return cityDao.findByName(name);
 	}
 	
-	//@CachePut(cacheNames={"cityFindAll","cityFindByName"})
-	//@CachePut
 	public void save(City city) {
+		cityDao.save(city);
+	}
+	
+	@Cacheable(cacheNames="city", key="#cityId")
+	public City getCity(Long cityId) {
+		return cityDao.findOne(cityId);
+	}
+	
+	@CachePut(cacheNames="city", key="#cityId")
+	public void updateCityName(Long cityId, String cityName) {
+		City city = cityDao.findOne(cityId);
+		city.setName(cityName);
 		cityDao.save(city);
 	}
 	

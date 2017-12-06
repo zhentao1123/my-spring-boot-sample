@@ -11,4 +11,9 @@
            timeToLiveSeconds="600">
     </cache>
 
+	<cache name="city"
+           maxEntriesLocalHeap="200"
+           timeToLiveSeconds="600">
+    </cache>
+
 </ehcache>
