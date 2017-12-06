@@ -1,0 +1,41 @@
+#spring
+spring:
+  datasource:
+    url: jdbc:h2:mem:test;AUTO_RECONNECT=TRUE;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: root
+    password: 123456
+  jpa:
+    properties:
+      hibernate:
+        hbm2ddl.auto: create-drop
+        show_sql: true #显示转换的sql
+  cache:
+    #cache-names: cityFindAll,cityFindByName,city #若显式设置可以在cacheManager.getCacheNames()看到；否则看不到，但似乎对功能不影响
+    type: REDIS #所有可设置的枚举类型 org.springframework.boot.autoconfigure.cache.CacheType;该处不指定则按枚举定义顺序匹配第一个存在的包资源实现
+  redis:
+    host: localhost # Redis服务器地址
+    port: 6379 # Redis服务器连接端口
+    password: # Redis服务器连接密码（默认为空）
+    timeout: 500 # 连接超时时间（毫秒）
+    database: 0 # Redis数据库索引（默认为0）
+    pool:
+      max-active: 8 # 连接池最大连接数（使用负值表示没有限制）
+      max-wait: -1 # 连接池最大阻塞等待时间（使用负值表示没有限制）
+      max-idle: 8 # 连接池中的最大空闲连接
+      min-idle: 0 # 连接池中的最小空闲连接
+
+#logger
+logging:
+  level:
+    org: off
+    com: off
+    com.example.demo: debug
+    org.hibernate.SQL: debug
+
+# ＝＝ 说明 ＝＝
+# [jpa.properties.hibernate.hbm2ddl.auto:]
+# validate     加载hibernate时，验证创建数据库表结构
+# create       每次加载hibernate，重新创建数据库表结构，这就是导致数据库表数据丢失的原因。
+# create-drop  加载hibernate时创建，退出是删除表结构
+# update       加载hibernate自动更新数据库结构
