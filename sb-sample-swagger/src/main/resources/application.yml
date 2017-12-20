@@ -1,0 +1,4 @@
+app-name: sb-sample-swagger
+
+#swagger
+springfox.documentation.swagger.v2.path: /${app-name}
