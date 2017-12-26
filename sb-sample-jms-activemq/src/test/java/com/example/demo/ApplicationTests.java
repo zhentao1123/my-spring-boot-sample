@@ -7,6 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.example.demo.component.JmsComponent;
+import com.example.demo.domain.User;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -18,7 +19,11 @@ public class ApplicationTests {
 	@Test
 	public void jmsTest() {
 		jmsComponent.sendByMQ1("Hello");
+		
 		jmsComponent.sendByMQ2("Hello");
+		
+		User user = new User("Bob", 36);
+		jmsComponent.sendByMQ2(user);
 	}
 
 }

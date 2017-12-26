@@ -10,8 +10,9 @@ spring:
 #    broker-url: tcp://127.0.0.1:61616
 #    password: admin
 #    user: admin
-#    packages:
-#      trust-all: false
+#    send-timeout: 0
+    packages:
+      trust-all: true #消息支持传输及转换所有序列化对象，否则仅String
 #      trusted:
 #    pool:
 #      enabled: false
