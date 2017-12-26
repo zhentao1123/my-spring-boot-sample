@@ -1,0 +1,9 @@
+app-name: sb-sample-web-cors-server
+
+server:
+  port: 8080
+  context-path: /${app-name}
+
+logging:
+  level: 
+    com.example.demo: debug
