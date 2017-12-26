@@ -6,10 +6,10 @@ logging:
 spring:
 # ACTIVEMQ
   activemq:
-    in-memory: true
-#    broker-url: 
-#    password: 
-#    user: 
+    in-memory: true #本地测试可设置为true
+#    broker-url: tcp://127.0.0.1:61616
+#    password: admin
+#    user: admin
 #    packages:
 #      trust-all: false
 #      trusted:
