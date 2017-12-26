@@ -1,0 +1,1 @@
+mac中安装和启动rabbitmq，参照 http://www.rabbitmq.com/install-homebrew.html
