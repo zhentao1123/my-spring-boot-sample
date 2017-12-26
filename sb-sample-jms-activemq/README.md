@@ -1,0 +1,1 @@
+mac中安装和启动activemq，参照 http://blog.csdn.net/whereismatrix/article/details/47303613
