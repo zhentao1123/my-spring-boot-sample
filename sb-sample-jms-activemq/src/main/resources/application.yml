@@ -1,3 +1,21 @@
 logging:
   level: 
     com.example.demo: debug
+    
+# Spring
+spring:
+# ACTIVEMQ
+  activemq:
+    in-memory: true
+#    broker-url: 
+#    password: 
+#    user: 
+#    packages:
+#      trust-all: false
+#      trusted:
+#    pool:
+#      enabled: false
+      #configuration.*: 
+#      expiry-timeout: 0
+#      idle-timeout: 30000
+#      max-connections: 1
