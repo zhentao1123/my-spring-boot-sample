@@ -1,0 +1,4 @@
+server:
+  error:
+    whitelabel:
+      enabled: false #whitelabel可以设置关闭
