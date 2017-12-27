@@ -5,7 +5,7 @@ spring:
     driver-class-name: org.h2.Driver
     username: root
     password: 123456
-    #schema: classpath:db/schema.sql #每次启动执行构建结构（如果是JPA可通过@Entity标记的对象构建）
+    schema: classpath:db/schema.sql #每次启动执行构建结构（如果是JPA可通过@Entity标记的对象构建）
     data: classpath:db/data.sql #每次启动执行录入数据
     h2:
       console:

@@ -1,2 +1,2 @@
--- hibernate启动会自动执行class目录下的import.sql文件
-insert into city(id, country, name, state, map) values (1, 'Australia', 'Brisbane', 'Queensland', '-27.470933, 153.023502')
+-- hibernate启动会自动执行class目录下的import.sql文件, 但该处没有测试成功
+-- insert into city(id, country, name, state, map) values (1, 'Australia', 'Brisbane', 'Queensland', '-27.470933, 153.023502')
