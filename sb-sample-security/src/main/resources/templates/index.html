@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html 
+	xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Spring Security</title>
+</head>
+<body>
+<h1>欢迎使用Spring Security!</h1>
+
+<div>
+访客点击 <a th:href="@{/anyone}">这里</a> 打个招呼吧
+</div>
+
+<br/>
+
+<div>
+用户点击 <a th:href="@{/user/}">这里</a> 打个招呼吧
+</div>
+<div>
+用户点击 <a th:href="@{/user/1}">用户内页1</a> 
+</div>
+
+<br/>
+
+<div>
+管理员点击 <a th:href="@{/admin/}">这里</a> 打个招呼吧
+</div>
+<div>
+管理员点击 <a th:href="@{/admin/1}">管理员内页1</a>
+</div>
+
+</body>
+</html>
