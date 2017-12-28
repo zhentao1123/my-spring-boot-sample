@@ -1,3 +1,4 @@
+# Logging
 logging:
   level: 
     com.example.demo: debug
@@ -8,5 +9,9 @@ spring:
   rabbitmq:
     host: localhost
     port: 5672
-    password: 
-    username: 
+    password: guest
+    username: guest
+    listener:
+      simple:
+        concurrency: 2 #最小消息监听线程数
+        max-concurrency: 2 #最大消息监听线程数
