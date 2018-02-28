@@ -33,6 +33,8 @@ public class Swagger2Config {
 			//.paths(PathSelectors.any())
 			//.paths(Predicates.or(PathSelectors.regex("/users/.*")))//过滤的接口
 			.build()
+			//.directModelSubstitute(org.joda.time.LocalDate.class, java.sql.Date.class) //替代设置，未发现实际用途
+			//.directModelSubstitute(org.joda.time.DateTime.class, java.util.Date.class)
 			.apiInfo(apiInfo());
 	}
 	
