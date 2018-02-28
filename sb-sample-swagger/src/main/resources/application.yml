@@ -2,3 +2,12 @@ app-name: sb-sample-swagger
 
 #swagger
 springfox.documentation.swagger.v2.path: /${app-name} #指定swagger-ui.html页面上的doc目录，默认是/v2/api-docs,不设置也没什么影响
+
+#用spring security提供访问安全控制，非必须
+security:
+  basic:
+    enabled: true
+    path: /swagger-ui.html
+  user:
+    name: admin
+    password: 123456

@@ -38,11 +38,17 @@
 			<version>2.7.0</version>
 		</dependency>
 		
-		<!-- joda-time -->
+		<!-- joda-time，非必须 -->
 	  	<dependency>
 		    <groupId>joda-time</groupId>
 		    <artifactId>joda-time</artifactId>
 		    <version>2.9.9</version>
+		</dependency>
+		
+		<!-- 用spring security提供访问安全控制，非必须 -->
+		<dependency>  
+	        <groupId>org.springframework.boot</groupId>  
+	        <artifactId>spring-boot-starter-security</artifactId>  
 		</dependency>
 		
 		<dependency>
