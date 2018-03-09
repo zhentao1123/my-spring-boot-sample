@@ -22,7 +22,7 @@ public class Application extends WebMvcConfigurerAdapter{
         // 多个拦截器组成一个拦截器链
         // addPathPatterns 用于添加拦截规则
         // excludePathPatterns 用户排除拦截
-        registry.addInterceptor(new CustomInterceptor()).addPathPatterns("/**");
+        registry.addInterceptor(new CustomInterceptor()).addPathPatterns("/**").excludePathPatterns("/user/**");
         //registry.addInterceptor(new MyInterceptor2()).addPathPatterns("/**");
         super.addInterceptors(registry);
     }
