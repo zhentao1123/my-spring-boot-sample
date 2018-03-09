@@ -27,11 +27,12 @@ public class Swagger2Config {
             //.forCodeGeneration(true)
             //.pathMapping("/springboot")
 			.select()
-			//.apis(RequestHandlerSelectors.basePackage(basePackage))//匹配包
-			//.apis(RequestHandlerSelectors.withClassAnnotßation(Api.class))//匹配类注解
-			.apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))//匹配方法注解
+			//.apis(RequestHandlerSelectors.basePackage(basePackage))//api过滤，匹配包
+			//.apis(RequestHandlerSelectors.withClassAnnotßation(Api.class))//api过滤，匹配类注解
+			.apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))//api过滤，匹配方法注解
 			//.paths(PathSelectors.any())
-			//.paths(Predicates.or(PathSelectors.regex("/users/.*")))//过滤的接口
+			//.paths(Predicates.or(PathSelectors.regex("/users/.*")))//api过滤，路径方式，匹配路径
+			//.paths(Predicates.not(PathSelectors.regex("/users/.*")))//api过滤，路径方式，去除路径
 			.build()
 			//.directModelSubstitute(org.joda.time.LocalDate.class, java.sql.Date.class) //替代设置，未发现实际用途
 			//.directModelSubstitute(org.joda.time.DateTime.class, java.util.Date.class)
