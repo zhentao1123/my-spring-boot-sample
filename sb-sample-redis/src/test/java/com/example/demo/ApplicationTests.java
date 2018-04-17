@@ -9,9 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.core.RedisKeyValueTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.example.demo.domain.User;
+
+import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -24,8 +28,11 @@ public class ApplicationTests {
 	@Resource(name = "redisTemplate4User")
 	private RedisTemplate<String, User> redisTemplate;
 	
+	@Autowired
+    private JedisPool jedisPool;
+	
 	@Test
-	public void contextLoads() {
+	public void testSpringDataRedis() {
 		// 保存字符串
 		stringRedisTemplate.opsForValue().set("aaa", "111");
 		Assert.assertEquals("111", stringRedisTemplate.opsForValue().get("aaa"));
@@ -46,4 +53,14 @@ public class ApplicationTests {
 		
 	}
 
+	@Test
+	public void testJedis() {
+		Jedis jedis = jedisPool.getResource();
+        //存入键值对
+        jedis.set("key2","value2");
+        String result = jedis.get("key2");
+        Assert.assertEquals("value2", result);
+        //回收ShardedJedis实例
+        jedis.close();
+	}
 }
