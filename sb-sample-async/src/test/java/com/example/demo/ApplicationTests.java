@@ -2,6 +2,8 @@ package com.example.demo;
 
 import java.util.concurrent.Future;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,8 @@ import com.example.demo.async.Task;
 @SpringBootTest
 public class ApplicationTests {
 
+	Log log = LogFactory.getLog(getClass());
+	
 	@Autowired
 	private Task task;
 
@@ -36,7 +40,7 @@ public class ApplicationTests {
 
 		long end = System.currentTimeMillis();
 
-		System.out.println("任务全部完成，总耗时：" + (end - start) + "毫秒");
+		log.info("任务全部完成，总耗时：" + (end - start) + "毫秒");
 
 	}
 
