@@ -12,7 +12,7 @@ public class Task {
 
     public static Random random =new Random();
 
-    @Async
+    @Async("taskExecutor")
     public Future<String> doTaskOne() throws Exception {
         System.out.println("开始做任务一");
         long start = System.currentTimeMillis();
@@ -22,7 +22,7 @@ public class Task {
         return new AsyncResult<>("任务一完成");
     }
 
-    @Async
+    @Async("taskExecutor")
     public Future<String> doTaskTwo() throws Exception {
         System.out.println("开始做任务二");
         long start = System.currentTimeMillis();
@@ -32,7 +32,7 @@ public class Task {
         return new AsyncResult<>("任务二完成");
     }
 
-    @Async
+    @Async("taskExecutor")
     public Future<String> doTaskThree() throws Exception {
         System.out.println("开始做任务三");
         long start = System.currentTimeMillis();
