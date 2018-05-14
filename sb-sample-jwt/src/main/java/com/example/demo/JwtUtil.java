@@ -82,38 +82,4 @@ public class JwtUtil {
         		throw e;
         }
 	}
-	
-	public static void main(String[] args) {
-		String secret1 = JwtUtil.createKey();
-		String secret2 = JwtUtil.createKey();
-		
-		logger.debug("secret1 : " + secret1);
-		logger.debug("secret2 : " + secret2);
-		
-		//Test1
-		if(false){
-			String jwt = JwtUtil.createJWT("subject", secret1, 0);
-			try {
-				JwtUtil.parseJWT(jwt, secret2);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		
-		//Test2
-		if(false){
-			String jwt = JwtUtil.createJWT("subject", secret1, 1500l);
-			for(int i=0; i<10; i++) {
-				try {
-					JwtUtil.parseJWT(jwt, secret1);
-				} catch (Exception e1) {
-					e1.printStackTrace();
-				}
-				try {
-					Thread.currentThread().sleep(100l);
-				} catch (InterruptedException e) {}
-			}
-		}
-		
-	}
 }
