@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class Controller {
 	
 	/**
-	 * curl http://127.0.0.1:8000/api/protected
+	 * curl -H 'Authorization:' http://127.0.0.1:8080/api/protected
 	 * @return
 	 */
 	@GetMapping("/api/protected")
@@ -29,7 +29,7 @@ public class Controller {
 	
 	/**
 	 * 根据
-	 * curl -H "Content-Type:application/json" -X POST -d '{"username": "tom", "password":"123456"}' http://127.0.0.1:8000/login
+	 * curl -H "Content-Type:application/json" -X POST -d '{"username": "tom", "password":"123456"}' http://127.0.0.1:8080/login
 	 * @param response
 	 * @param account
 	 * @return
@@ -38,7 +38,7 @@ public class Controller {
 	@PostMapping("/login") 
 	public Object login(HttpServletResponse response, @RequestBody final Account account) throws IOException { 
 		if(isValidPassword(account)) {
-			String jwt = JwtUtil.createJWT(account.getUsername(), "secret", 0); 
+			String jwt = JwtUtil.createJWT(account.getUsername(), JwtUtil.SECRET, 0); 
 			return new HashMap<String, String>(){{put("token", jwt);}}; 
 		}else { 
 			return new ResponseEntity(HttpStatus.UNAUTHORIZED); 
