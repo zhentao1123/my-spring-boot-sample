@@ -19,7 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class Controller {
 	
 	/**
-	 * curl -H 'Authorization:' http://127.0.0.1:8080/api/protected
+	 * 收包含的访问资源
+	 * 约定在Header中的Authorization设置JWT令牌
+	 * curl -H 'Authorization:<JWT>' http://127.0.0.1:8080/api/protected
 	 * @return
 	 */
 	@GetMapping("/api/protected")
@@ -28,7 +30,8 @@ public class Controller {
     }
 	
 	/**
-	 * 根据
+	 * 登录以获取Token
+	 * 不在Token检验范围
 	 * curl -H "Content-Type:application/json" -X POST -d '{"username": "tom", "password":"123456"}' http://127.0.0.1:8080/login
 	 * @param response
 	 * @param account
