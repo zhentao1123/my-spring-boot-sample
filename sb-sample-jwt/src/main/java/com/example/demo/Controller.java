@@ -49,6 +49,6 @@ public class Controller {
 	}
 	
 	private boolean isValidPassword(Account account) {
-		return (account.getUsername().equals("tom") && account.getPassword().equals("123456"));
+		return (account.getUsername().equals("admin") && account.getPassword().equals("123456"));
 	}
 }
