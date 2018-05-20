@@ -13,13 +13,13 @@ public class UserServiceImpl implements UserService {
 	private JdbcTemplate jdbcTemplate;
 	
 	@Override
-	@Transactional(readOnly=false)
+	@Transactional
 	public void create(String name, Integer age) {
 	    jdbcTemplate.update("insert into user(name, age, create_time) values(?, ?, ?)", name, age, new Date());
 	}
 	
 	@Override
-	@Transactional(readOnly=false)
+	@Transactional
 	public void deleteByName(String name) {
 	    jdbcTemplate.update("delete from user where name = ?", name);
 	}
@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	@Transactional(readOnly=false)
+	@Transactional
 	public void deleteAllUsers() {
 	    jdbcTemplate.update("delete from user");
 	}
