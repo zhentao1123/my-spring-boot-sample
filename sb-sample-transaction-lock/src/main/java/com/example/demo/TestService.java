@@ -63,12 +63,13 @@ public class TestService {
 	@Transactional(readOnly=false)
 	public void update2() {
 		int ron = 10;
+		
 		String sql = "SELECT * FROM price WHERE id = 1 FOR UPDATE";
 		Price price = jdbcTemplate.queryForObject(sql, getRowMapper(Price.class));
+		
 		price.setFront(price.getFront().subtract(new BigDecimal(ron)));
 		price.setEnd(price.getEnd().add(new BigDecimal(ron)));
 		price.setTotal(price.getFront().add(price.getEnd()));
-		
 		sql = "UPDATE price SET total = ?, front = ?, end = ? WHERE id = 1";
 		int count = jdbcTemplate.update(sql, price.getTotal(), price.getFront(), price.getEnd());
 		System.out.println(count);
@@ -88,14 +89,15 @@ public class TestService {
 	@Transactional(readOnly=false)
 	public void update3() {
 		int ron = 10;
-		String sql = "SELECT * FROM price WHERE id = 1 FOR UPDATE";
+		
+		String sql = "SELECT * FROM price_version WHERE id = 1";
 		PriceVersion price = jdbcTemplate.queryForObject(sql, getRowMapper(PriceVersion.class));
+		
 		price.setFront(price.getFront().subtract(new BigDecimal(ron)));
 		price.setEnd(price.getEnd().add(new BigDecimal(ron)));
 		price.setTotal(price.getFront().add(price.getEnd()));
-		
-		sql = "UPDATE price SET total = ?, front = ?, end = ? WHERE id = 1";
-		int count = jdbcTemplate.update(sql, price.getTotal(), price.getFront(), price.getEnd());
+		sql = "UPDATE price_version SET total = ?, front = ?, end = ?, version = version + 1 WHERE id = 1 AND version = ?";
+		int count = jdbcTemplate.update(sql, price.getTotal(), price.getFront(), price.getEnd(), price.getVersion());
 		System.out.println(count);
 		if (count == 0){
             System.out.println("更新失败");
@@ -103,7 +105,7 @@ public class TestService {
         		System.out.println("更新成功");
         }
 		
-		sql = "INSERT INTO price (total, front, end) VALUES (?, ?, ?)";
-		jdbcTemplate.update(sql, price.getTotal(), price.getFront(), price.getEnd());
+		sql = "INSERT INTO price_version (total, front, end, version) VALUES (?, ?, ?, ?)";
+		jdbcTemplate.update(sql, price.getTotal(), price.getFront(), price.getEnd(), price.getVersion());
 	}
 }
