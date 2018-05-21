@@ -33,7 +33,7 @@ public class ApplicationTests {
 	@Test
 	@Rollback(false)
 	public void update1_1() {
-		for(int i=0; i<10; i++) {
+		for(int i=0; i<20; i++) {
 			service.update1();
 		}
 	}
@@ -45,7 +45,7 @@ public class ApplicationTests {
 	@Test
 	@Rollback(false)
 	public void update1_2() {
-		for(int i=0; i<10; i++) {
+		for(int i=0; i<20; i++) {
 			Thread t = new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -68,7 +68,7 @@ public class ApplicationTests {
 	@Test
 	@Rollback(false)
 	public void update2() {
-		for(int i=0; i<10; i++) {
+		for(int i=0; i<20; i++) {
 			Thread t = new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -84,6 +84,11 @@ public class ApplicationTests {
             });
 			threadPool.submit(t);
 		}
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/**
@@ -93,21 +98,19 @@ public class ApplicationTests {
 	@Test
 	@Rollback(false)
 	public void update3() {
-		for(int i=0; i<10; i++) {
+		for(int i=0; i<20; i++) {
 			Thread t = new Thread(new Runnable() {
                 @Override
                 public void run() {
                 		service.update3();
-                		
-                		try {
-						Thread.sleep(1000);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-					
                 }
             });
 			threadPool.submit(t);
+		}
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
 	}
 }
