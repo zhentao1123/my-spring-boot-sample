@@ -85,4 +85,29 @@ public class ApplicationTests {
 			threadPool.submit(t);
 		}
 	}
+	
+	/**
+	 * 异步并发，乐观锁
+	 * 正常，
+	 */
+	@Test
+	@Rollback(false)
+	public void update3() {
+		for(int i=0; i<10; i++) {
+			Thread t = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                		service.update3();
+                		
+                		try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					
+                }
+            });
+			threadPool.submit(t);
+		}
+	}
 }
