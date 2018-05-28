@@ -8,5 +8,5 @@
 > 2. spring boot 1.5.8.RELEASE
 
 #### 实践的思考
-1. 
+1. mvn clean package -Dmaven.test.skip=true -P prod 
 
