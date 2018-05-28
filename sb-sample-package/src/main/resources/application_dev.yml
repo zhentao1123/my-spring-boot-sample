@@ -1,0 +1,10 @@
+spring:
+  profiles: dev
+
+app:
+  name: sb-sample-package-dev
+
+#server
+server: 
+  context-path: /${app.name}
+  

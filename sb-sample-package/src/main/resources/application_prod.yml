@@ -1,0 +1,10 @@
+spring:
+  profiles: prod
+
+app:
+  name: sb-sample-package-prod
+
+#server
+server: 
+  context-path: /${app.name}
+  
