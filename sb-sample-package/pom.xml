@@ -80,16 +80,19 @@
 				<executions>
 					<execution>
 						<id>default-resources</id>
+						<!-- 在default生命周期的 validate阶段就执行resources插件的copy-resources目标 -->
 						<phase>validate</phase>
 						<goals>
 							<goal>copy-resources</goal>
 						</goals>
 						<configuration>
+							<!-- 指定resources插件处理资源文件到哪个目录下 -->
 							<outputDirectory>target/classes</outputDirectory>
 							<useDefaultDelimiters>false</useDefaultDelimiters>
 							<delimiters>
 								<delimiter>#</delimiter>
 							</delimiters>
+							<!-- 待处理的资源定义 -->
 							<resources>
 								<!-- 
 								指定src/main/resources下相应文件为资源文件；
@@ -97,6 +100,7 @@
 								需要替换的${key}在<profiles><profile><properties>中被定义及赋值
 								 -->
 								<resource>
+									<!-- 指定resources插件处理哪个目录下的资源文件 -->
 									<directory>src/main/resources/</directory>
 									<includes>
 										<include>**/*.xml</include>
