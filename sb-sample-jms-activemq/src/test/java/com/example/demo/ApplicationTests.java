@@ -26,4 +26,15 @@ public class ApplicationTests {
 		jmsComponent.sendByMQ2(user);
 	}
 
+	@Test
+	public void testDelaySend() {
+		jmsComponent.sendByMQ2DelaySend("delaySend");
+		try {
+			Thread.sleep(10000l);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 }
