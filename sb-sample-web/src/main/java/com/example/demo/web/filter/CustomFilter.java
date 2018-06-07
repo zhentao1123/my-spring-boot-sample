@@ -9,7 +9,9 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Configuration;
@@ -32,6 +34,13 @@ public class CustomFilter implements Filter{
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		logger.debug("[filter1 do]");
+		
+		//演示读取request的body
+		//备份及使用流
+		ResettableServletRequest myRequest = new ResettableServletRequest((HttpServletRequest) request);
+		String requestBody = IOUtils.toString(myRequest.getInputStream(), "UTF-8");
+		logger.debug(requestBody);
+		
 		chain.doFilter(request, response);
 	}
 	
