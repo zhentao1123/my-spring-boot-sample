@@ -1,4 +1,4 @@
-package com.example.demo.web.filter;
+package com.example.demo.web.filter.config;
 
 import java.io.IOException;
 
@@ -8,20 +8,13 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.annotation.WebFilter;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
 
-/**
- * 过滤器添加方式一
- */
-@Configuration //必须
-@WebFilter(urlPatterns="/*", filterName="CustomFilter1")
-@Order(value = 1)
-public class CustomFilter implements Filter{
+import com.example.demo.web.filter.CustomFilter;
+
+public class CustomFilter2 implements Filter{
 
 	private static Logger logger = LoggerFactory.getLogger(CustomFilter.class);
 	
@@ -31,7 +24,7 @@ public class CustomFilter implements Filter{
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		logger.debug("[filter1 do]");
+		logger.debug("[filter2 do]");
 		chain.doFilter(request, response);
 	}
 	
@@ -40,7 +33,7 @@ public class CustomFilter implements Filter{
 	 */
 	@Override
 	public void init(FilterConfig config) throws ServletException {
-		logger.debug("[filter1 init]");
+		logger.debug("[filter2 init]");
 	}
 	
 	/**
@@ -48,7 +41,7 @@ public class CustomFilter implements Filter{
 	 */
 	@Override
 	public void destroy() {
-		logger.debug("[filter1 destory]");
+		logger.debug("[filter2 destory]");
 	}
 
 }
