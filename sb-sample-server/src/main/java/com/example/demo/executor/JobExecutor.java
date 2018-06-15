@@ -1,5 +1,6 @@
 package com.example.demo.executor;
 
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.slf4j.Logger;
@@ -8,8 +9,10 @@ import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
 
-import com.example.demo.handler.JobHandler;
+import com.example.demo.handler.IJobHandler;
+import com.example.demo.handler.annotation.JobHandler;
 import com.example.demo.thread.JobThread;
 
 /**
@@ -19,9 +22,9 @@ import com.example.demo.thread.JobThread;
  * 3)管理任务线程池
  */
 @Component
-public class JobServer implements ApplicationContextAware{
+public class JobExecutor implements ApplicationContextAware{
 
-	private static final Logger logger = LoggerFactory.getLogger(JobServer.class);
+	private static final Logger logger = LoggerFactory.getLogger(JobExecutor.class);
 	
 	
 	// ApplicationContext --------------------------------------------
@@ -46,7 +49,7 @@ public class JobServer implements ApplicationContextAware{
 	}
 	public void destroy(){
 		// destory JobThreadRepository
-		destoryJobHandlerRepository();
+		destoryJobThreadRepository();
 		
 		// destory executor-server
         stopExecutorServer();
@@ -54,24 +57,38 @@ public class JobServer implements ApplicationContextAware{
 	
 	
 	// JobHandler Repository --------------------------------------------
-	private static ConcurrentHashMap<String, JobHandler> jobHandlerRepository = new ConcurrentHashMap<>();
-	public static JobHandler registJobHandler(String name, JobHandler jobHandler) {
+	private static ConcurrentHashMap<String, IJobHandler> jobHandlerRepository = new ConcurrentHashMap<>();
+	// registe JobHandler
+	public static IJobHandler registJobHandler(String name, IJobHandler jobHandler) {
 		return jobHandlerRepository.put(name, jobHandler);
 	}
-	public static JobHandler loadJobHandler(String name) {
+	// load JobHandler
+	public static IJobHandler loadJobHandler(String name) {
 		return jobHandlerRepository.get(name);
 	}
+	// init JobHandler Repository
 	private static void initJobHandlerRepository(ApplicationContext applicationContext){
-		//TODO
-	}
-	private static void destoryJobHandlerRepository() {
-		//TODO
+		if(null == applicationContext) {
+			return;
+		}
+		Map<String, Object> serviceBeanMap =  applicationContext.getBeansWithAnnotation(JobHandler.class);
+		if(!CollectionUtils.isEmpty(serviceBeanMap)) {
+			for(Object serviceBean : serviceBeanMap.values()) {
+				String name = serviceBean.getClass().getAnnotation(JobHandler.class).value();
+				IJobHandler handler = (IJobHandler) serviceBean;
+				if (loadJobHandler(name) != null) {
+                    throw new RuntimeException("jobhandler naming conflicts.");
+                }
+                registJobHandler(name, handler);
+			}
+		}
 	}
 	
 	
 	// JobThread Repository --------------------------------------------
 	private static ConcurrentHashMap<String, JobThread> jobThreadRepository = new ConcurrentHashMap<>();
-	public static JobThread registJobThread(String jobId, JobHandler jobHandler) {
+	// regist JobThread
+	public static JobThread registJobThread(String jobId, IJobHandler jobHandler) {
 		JobThread jobThread = new JobThread(jobId, jobHandler);
 		jobThread.start();
 		
@@ -83,6 +100,7 @@ public class JobServer implements ApplicationContextAware{
 		
 		return jobThread;
 	}
+	// remove JobThread
 	public static void removeJobThread(String jobId){
         JobThread jobThreadOld = jobThreadRepository.remove(jobId);
         if(null!=jobThreadOld) {
@@ -90,8 +108,18 @@ public class JobServer implements ApplicationContextAware{
         		jobThreadOld.interrupt();
         }
     }
+	// load JobThread
 	public static JobThread loadJobThread(String name) {
 		return jobThreadRepository.get(name);
+	}
+	// destory JobThread Repository
+	private static void destoryJobThreadRepository() {
+		if (jobThreadRepository.size() > 0) {
+            for (Map.Entry<String, JobThread> item: jobThreadRepository.entrySet()) {
+            		removeJobThread(item.getKey());
+            }
+            jobThreadRepository.clear();
+        }
 	}
 	
 	

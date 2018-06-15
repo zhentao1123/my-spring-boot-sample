@@ -2,7 +2,7 @@ package com.example.demo.handler;
 
 import com.example.demo.model.ResultR;
 
-public abstract class JobHandler {
+public abstract class IJobHandler {
 
 	public abstract ResultR<String> execute(String param) throws Exception;
 
