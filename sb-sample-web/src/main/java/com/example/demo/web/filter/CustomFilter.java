@@ -41,7 +41,7 @@ public class CustomFilter implements Filter{
 		String requestBody = IOUtils.toString(myRequest.getInputStream(), "UTF-8");
 		logger.debug(requestBody);
 		
-		chain.doFilter(request, response);
+		chain.doFilter(myRequest, response);
 	}
 	
 	/**
