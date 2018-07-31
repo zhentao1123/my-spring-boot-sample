@@ -7,6 +7,7 @@ import java.io.Writer;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.mail.internet.MimeMessage;
 
 import org.junit.Test;
@@ -30,6 +31,14 @@ public class ApplicationTests {
 
 	@Autowired
 	private JavaMailSender mailSender;
+	
+	/*
+	@Resource(name="mailSender1")
+	private JavaMailSender mailSender1;
+	
+	@Resource(name="mailSender2")
+	private JavaMailSender mailSender2;
+	*/
 	
 	String from = "zzt1981@126.com";
 	String to = "zzt1981@126.com";
