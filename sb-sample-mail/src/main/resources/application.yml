@@ -1,4 +1,4 @@
-#spring
+#默认配置
 spring:
   mail:
     host: smtp.126.com
@@ -11,3 +11,29 @@ spring:
           starttls: 
             enable: true
             required: true
+            
+#自定义多发件人设置
+mail1: 
+  host: smtp.126.com
+  username: mail #
+  password: password #
+  defaultEncoding: UTF-8
+  properties: 
+    mail:
+      smtp:
+        auth: true
+        starttls: 
+          enable: true
+          required: true
+mail2: 
+  host: smtp.126.com
+  username: mail #
+  password: password #
+  defaultEncoding: UTF-8
+  properties: 
+    mail:
+      smtp:
+        auth: true
+        starttls: 
+          enable: true
+          required: true
